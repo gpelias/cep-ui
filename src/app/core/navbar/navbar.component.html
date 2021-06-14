@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <!--<div class="container">-->
+  <!--<div class="ui-g">-->
+  <!--<div class="ui-g-12" >-->
+  <a href="javascript:;" class="navbar-toggle" style="margin-left: 15px;" (click)="exibindoMenu = !exibindoMenu">
+    <i class="fa fa-bars" style="margin-top: 5px"></i>
+    <!--<i class="pi pi-bars"></i>-->
+  </a>
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <ul class="navbar-menu ui-g-12" [hidden]="!exibindoMenu">
+    <li class="navbar-user">Menu</li>
+    <!--<i class="fa fa-bars" style="margin-right: 5px"></i>-->
+    <!--<i class="pi pi-bars"></i>-->
+    <li class="navbar-menuItem"><a routerLink="/cep" (click)="exibindoMenu = false; title='CEP'">CEP</a></li>
+    <li class="navbar-menuItem"><a routerLink="/cidade" (click)="exibindoMenu = false; title='Cidade'">Cidade</a></li>
+    <li class="navbar-menuItem"><a routerLink="/estado" (click)="exibindoMenu = false; title='Estado'">Estado</a></li>
+  </ul>
+</nav>

@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Estados</h1>
+  <div class="ui-g">
+    <form (ngSubmit)="search()" (reset)="search()">
+      <div class="ui-g-12 ui-fluid">
+        <label class="ui-g-12">Estado</label>
+        <input pInputText type="text" name="estado" [(ngModel)]="estado">
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+        <button pButton type="reset" label="Limpar"></button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container ui-fluid">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable class="tab-content" [value]="estados?.content" [paginator]="true" [rows]="size" [lazy]="true"
+                   [totalRecords]="estados?.totalElements" (onLazyLoad)="onPageChange($event)"
+                   [responsive]="true" #tabela1>
+        <p-column field="estado" header="Estado"></p-column>
+        <p-column field="sigla" header="Sigla"></p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

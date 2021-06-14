@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Cidade</h1>
+  <div class="ui-g">
+    <form (ngSubmit)="search()" (reset)="search()">
+      <div class="ui-g-12 ui-fluid">
+        <label class="ui-g-12">Cidade</label>
+        <input pInputText type="text" name="cidade" [(ngModel)]="cidade">
+        <label class="ui-g-12">Estado</label>
+        <p-dropdown [options]="estados" [(ngModel)]="estado"
+                    placeholder="Selecione um estado"
+                    optionLabel="estado" [showClear]="true" name="cities">
+        </p-dropdown>
+      </div>
+      <div class="ui-g ui-g-12">
+          <button pButton type="submit" label="Pesquisar"></button>
+          <button pButton type="reset" label="Limpar"></button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container ui-fluid">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable class="tab-content" [value]="cidades?.content" [paginator]="true" [rows]="size" [lazy]="true"
+                   [totalRecords]="cidades?.totalElements" (onLazyLoad)="onPageChange($event)"
+                   [responsive]="true" #tabela>
+        <p-column header="Cidade" field="cidade"></p-column>
+        <p-column header="Estado">
+          <ng-template let-cid="rowData" pTemplate="body">
+            <span>{{estados[cid.idEstado - 1].estado}}</span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</div>

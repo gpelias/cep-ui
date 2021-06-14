@@ -1,0 +1,80 @@
+<div class="container">
+  <h1>CEP</h1>
+  <div class="ui-g">
+    <form (ngSubmit)="search()" (reset)="reset()" autocomplete="off">
+      <div class="ui-g-12 ui-fluid">
+        <!--<div class="ui-g-12 ui-md-6">-->
+          <label class="ui-g-12">CEP</label>
+          <input pInputText type="text" name="cep" [(ngModel)]="cep">
+          <label class="ui-g-12">Logradouro</label>
+          <input pInputText type="text" name="logradouro" [(ngModel)]="logradouro">
+          <label class="ui-g-12">Bairro</label>
+          <input pInputText type="text" name="bairro" [(ngModel)]="bairro">
+        <!--</div>-->
+        <div class="ui-g-12">
+          <h4>Cidade</h4>
+          <p-dropdown
+            [options]="cidades"
+            [(ngModel)]="cidade"
+            name="cidade"
+            placeholder="Selecione uma cidade"
+            optionLabel="cidade"
+            [showClear]="true"
+            [filter]="true"
+            [disabled]="exibirCidades">
+          </p-dropdown>
+        </div>
+        <div class="ui-g-12">
+          <h4>Estado</h4>
+          <p-dropdown
+            [options]="estados"
+            [(ngModel)]="estado"
+            name="estado"
+            placeholder="Selecione um estado"
+            optionLabel="estado"
+            [showClear]="true"
+            (onChange)="getCidades()">
+          </p-dropdown>
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+        <button pButton type="reset" label="Limpar"></button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container ui-fluid">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable class="tab-content" [value]="ceps?.content" [paginator]="true" [rows]="size" [lazy]="true"
+                   [totalRecords]="ceps?.totalElements" (onLazyLoad)="onPageChange($event)"
+                   [responsive]="true" rowHover="true" #tabela>
+        <p-column header="Cep" field="cep"></p-column>
+        <p-column header="Logradouro" field="logradouro"></p-column>
+        <p-column header="Bairro" field="bairro"></p-column>
+        <!--<p-column header="Cidade">-->
+        <!--<ng-template let-cepl="rowData" pTemplate="body">-->
+        <!--<span>{{cidades[cepl.idCidade - 1].cidade}}</span>-->
+        <!--</ng-template>-->
+        <!--</p-column>-->
+        <p-column header="Estado">
+          <ng-template let-cepl="rowData" pTemplate="body">
+            <span>{{estados[cepl.idEstado - 1].estado}}</span>
+          </ng-template>
+        </p-column>
+        <!--<p-column class="ui-g-12">-->
+        <!--<div>-->
+        <!--<a pButton icon="pi pi-pencil"></a>-->
+        <!--<a pButton icon="pi pi-trash"></a>-->
+        <!--<a class="botao" pButton icon="fa fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>-->
+        <!--<button type="submit" class="botao" pButton icon="fa fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="excluir(lanc)"></button>-->
+        <!--</div>-->
+        <!--</p-column>-->
+      </p-dataTable>
+    </div>
+    <!--<div class="ui-g-12">-->
+    <!--<a pButton label="Novo Lançamento"></a>-->
+    <!--</div>-->
+  </div>
+</div>
